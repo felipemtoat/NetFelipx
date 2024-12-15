@@ -38,6 +38,7 @@ const Series = () => {
       }
     };
     fetchInitialEpisodes();
+    // eslint-disable-next-line
   }, [selectedMovie]);
 
   const fetchEpisodes = async (seasonNumber) => {
