@@ -32,7 +32,7 @@ NetFelipx is a searchable library of movies and TV shows, built for study purpos
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/feleipmtoat/NetFelipx.git
+   git clone https://github.com/felipemtoat/NetFelipx.git
    cd NetFelipx
    ```
 
