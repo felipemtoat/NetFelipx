@@ -36,7 +36,7 @@ NetFelipx is a searchable library of movies and TV shows, built for study purpos
    cd NetFelipx
    ```
 
-2. Instale as dependências:
+2. Instale as dependências (no front e no back):
 
    ```bash
    yarn install
