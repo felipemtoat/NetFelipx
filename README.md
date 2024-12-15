@@ -32,7 +32,7 @@ NetFelipx is a searchable library of movies and TV shows, built for study purpos
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/NetFelipx.git
+   git clone https://github.com/feleipmtoat/NetFelipx.git
    cd NetFelipx
    ```
 
@@ -70,7 +70,7 @@ NetFelipx is a searchable library of movies and TV shows, built for study purpos
 
 ## Contato | Contact
 
-- 📧 **E-mail:** [felipesoldatellimotta@gmail.com](mailto\:seu-email@exemplo.com)
+- 📧 **E-mail:** [felipesoldatellimotta@gmail.com](mailto\:felipesoldatellimotta@gmail.com)
 - 📺 **LinkedIn:** [Felipe Motta](https://www.linkedin.com/in/felipe-motta-b472a4201)
 
 
