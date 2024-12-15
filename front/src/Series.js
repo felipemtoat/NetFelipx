@@ -23,40 +23,32 @@ const Series = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [videoUrl, setVideoUrl] = useState("");
   const [movieDetails, setMovieDetails] = useState(null);
-  const [selectedSeason, setSelectedSeason] = useState(null); // State for selected season
-  const [selectedEpisode, setSelectedEpisode] = useState(1); // State for selected episode
-  const [seasons, setSeasons] = useState([]); // State for available seasons
-  const [episodes, setEpisodes] = useState([]); //State for available episodes
+  const [selectedSeason, setSelectedSeason] = useState(null);
+  const [selectedEpisode, setSelectedEpisode] = useState(1);
+  const [episodes, setEpisodes] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchInitialEpisodes = async () => {
-      // Fetch episodes for initial season (1)
       if (selectedMovie) {
-        await fetchEpisodes(1); // Fetch episodes for season 1 on component mount/movie selection
+        await fetchEpisodes(1);
         setVideoUrl(
           `https://multiembed.mov/?video_id=${selectedMovie}&s=1&e=1`,
         );
       }
     };
-    fetchInitialEpisodes(); // Call function after API returns
+    fetchInitialEpisodes();
   }, [selectedMovie]);
 
   const fetchEpisodes = async (seasonNumber) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/seasoninfo/${selectedMovie}/${seasonNumber}`,
-      );
-      if (response.status === 200 && response.data && response.data.Episodes) {
-        setEpisodes(response.data.Episodes);
-        setSelectedEpisode(1); // Reset to first episode when season changes
-      } else {
-        setEpisodes([]); // Clear episodes if no data or error
-        // ...handle error
-      }
-    } catch (error) {
-      setEpisodes([]); // Clear episodes on error
-      // ...handle error
+    const response = await axios.get(
+      `http://localhost:3001/seasoninfo/${selectedMovie}/${seasonNumber}`,
+    );
+    if (response.status === 200 && response.data && response.data.Episodes) {
+      setEpisodes(response.data.Episodes);
+      setSelectedEpisode(1);
+    } else {
+      setEpisodes([]);
     }
   };
 
@@ -71,7 +63,7 @@ const Series = () => {
         `http://localhost:3001/infoseries/${movieId}`,
       );
       if (response.status === 200 && response.data) {
-        setMovieDetails(response.data); // Set directly, not in nested 'data'
+        setMovieDetails(response.data);
       } else {
         setError("Error fetching movie details.");
       }
@@ -85,16 +77,16 @@ const Series = () => {
   const handleCloseModal = () => {
     setSelectedMovie(null);
     setVideoUrl("");
-    setModalOpen(false); // Close modal using state
+    setModalOpen(false);
   };
 
   const handleSeasonChange = async (event) => {
     const seasonNumber = parseInt(event.target.value, 10);
     setSelectedSeason(seasonNumber);
-    await fetchEpisodes(seasonNumber); // Fetch episodes when the season changes
+    await fetchEpisodes(seasonNumber);
     setVideoUrl(
       `https://multiembed.mov/?video_id=${selectedMovie}&s=${selectedSeason}&e=1`,
-    ); //Update URL when season changes
+    );
   };
 
   const handleEpisodeChange = (event) => {
@@ -102,7 +94,7 @@ const Series = () => {
     setSelectedEpisode(episodeNumber);
     setVideoUrl(
       `https://multiembed.mov/?video_id=${selectedMovie}&s=${selectedSeason}&e=${episodeNumber}`,
-    ); // Update the video URL
+    );
   };
 
   const handleSearch = async () => {
@@ -146,26 +138,26 @@ const Series = () => {
       justifyContent: "center",
     },
     movieItem: {
-      width: "230px", // Fixed width
-      height: "440px", // Fixed height
+      width: "230px",
+      height: "440px",
       border: "1px solid #ccc",
       boxShadow: "2px 2px 5px rgba(0,0,0,0.1)",
       borderRadius: "5px",
       overflow: "hidden",
       padding: 0,
-      margin: "10px", //Added margin for spacing
-      display: "flex", // Enable flexbox for better layout
-      flexDirection: "column", // Stack items vertically
+      margin: "10px",
+      display: "flex",
+      flexDirection: "column",
     },
     movieImage: {
-      width: "100%", // Image takes full width
-      height: "100%", // Image takes full height
-      objectFit: "cover", // Cover the entire area
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
     },
     movieDetails: {
       padding: "10px",
-      flex: 1, // Details occupy remaining space after image
-      textAlign: "center", // Center text
+      flex: 1,
+      textAlign: "center",
     },
 
     movieList: {
@@ -193,7 +185,7 @@ const Series = () => {
       boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
       maxWidth: "800px",
       width: "90%",
-      zIndex: 1000, // Ensure modal is on top
+      zIndex: 1000,
     },
     videoContainer: {
       width: "100%",
@@ -206,14 +198,14 @@ const Series = () => {
     },
     closeButton: {
       opacity: "0%",
-      position: "fixed", //Make it fixed
+      position: "fixed",
       top: "20px",
-      left: "20px", // Adjust position as needed
+      left: "20px",
       backgroundColor: "red",
       color: "white",
       padding: "10px 15px",
       borderRadius: "5px",
-      zIndex: 1001, // Ensure it's on top of modal
+      zIndex: 1001,
       cursor: "pointer",
     },
     detailsContainer: {
@@ -224,19 +216,17 @@ const Series = () => {
       marginBottom: "10px",
     },
     overlay: {
-      // Style for the overlay
       position: "fixed",
       top: 0,
       left: 0,
       width: "100%",
       height: "100%",
       backgroundColor: "rgba(0,0,0,0.5)",
-      zIndex: 999, // Ensure it's below the modal
-      display: "none", //Initially hidden
+      zIndex: 999,
+      display: "none",
     },
     overlayOpen: {
-      // Style for the overlay when open
-      display: "block", //Show the overlay
+      display: "block",
     },
   };
 
@@ -292,11 +282,11 @@ const Series = () => {
       )}
 
       <div
-        style={{ ...styles.overlay, ...(modalOpen ? styles.overlayOpen : {}) }} // Use modalOpen state
+        style={{ ...styles.overlay, ...(modalOpen ? styles.overlayOpen : {}) }}
         onClick={handleCloseModal}
       ></div>
 
-      {modalOpen && ( // Conditionally render the modal based on state
+      {modalOpen && (
         <div style={styles.modal} className="modal">
           {selectedMovie && (
             <>
@@ -329,7 +319,6 @@ const Series = () => {
                         value={selectedSeason}
                         onChange={handleSeasonChange}
                       >
-                        {/* Generate season options based on movie details or a fixed range */}
                         {Array.from(
                           { length: movieDetails?.totalSeasons || 10 },
                           (_, i) => (
@@ -362,8 +351,6 @@ const Series = () => {
                 </Paper>
               )}
               <IconButton style={styles.closeButton} onClick={handleCloseModal}>
-                {" "}
-                {/* Close button inside modal */}
                 <CloseIcon />
               </IconButton>
             </>
