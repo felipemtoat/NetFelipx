@@ -60,8 +60,17 @@ NetFelipx is a searchable library of movies and TV shows, built for study purpos
 
 ---
 
+## Capturas de Tela | Screenshots
+
+![Movie Search](./screenshots/filmes.png)
+![Movie Details](./screenshots/filme.png)
+![TV Series Details](./screenshots/serie.png)
+
+---
+
 ## Contato | Contact
 
 - 📧 **E-mail:** [felipesoldatellimotta@gmail.com](mailto\:seu-email@exemplo.com)
 - 📺 **LinkedIn:** [Felipe Motta](https://www.linkedin.com/in/felipe-motta-b472a4201)
+
 
